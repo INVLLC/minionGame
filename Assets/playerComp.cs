@@ -15,11 +15,14 @@ public class playerComp : MonoBehaviour
     // make var for jumpForce
     public float jumpForce;
 
+    private float moveOriginal;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        moveOriginal = moveSpeed;
 
     }
 
@@ -51,15 +54,12 @@ public class playerComp : MonoBehaviour
             animator.SetBool("isRunning", false);
         }
 
-    //make the player jump
-        if (Input.GetButtonDown("Jump"))
+    //make the player jump on keypress
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);           
-            
-            // log isJumping to console with value of jumpForce
-            Debug.Log("isJumping: " + jumpForce);
-            
+            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            //log "i am jumping"
+            Debug.Log("i am jumping");
         }
         
         
@@ -77,7 +77,7 @@ public class playerComp : MonoBehaviour
         else
         {
             //moveSpeed wil go back to Move Speed set on inspector
-            moveSpeed = 20f;
+            moveSpeed = moveOriginal;
 
 
 
