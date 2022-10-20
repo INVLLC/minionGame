@@ -13,7 +13,7 @@ public class playerComp : MonoBehaviour
     private Animator animator;
 
     // make var for jumpForce
-    public float jumpForce;
+    public float jumpForce = 100f;
 
     private float moveOriginal;
 
@@ -23,6 +23,9 @@ public class playerComp : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         moveOriginal = moveSpeed;
+
+        //console log vector2.up
+        Debug.Log(Vector2.up);
 
     }
 
@@ -55,12 +58,19 @@ public class playerComp : MonoBehaviour
         }
 
     //make the player jump on keypress
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     rb.AddForce(Vector2.up * jumpForce);
+        //     //log "i am jumping"
+        //     Debug.Log("i am jumping");
+        // }
+
+        //make the player jump with a press isGrounded is true and dont let it jump if isGrounded is false.
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            //log "i am jumping"
-            Debug.Log("i am jumping");
+            rb.AddForce(Vector2.up * jumpForce);
         }
+
         
         
         //disable Up input 
